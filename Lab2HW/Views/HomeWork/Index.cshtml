@@ -1,0 +1,48 @@
+﻿@model IEnumerable<Lab2HW.Models.TypeShop>
+@{
+    Layout = null;
+}
+
+
+<style>
+    .td {
+        margin: 20px;
+    }
+</style>
+
+
+<table>
+    <caption>
+        Shop&Types
+    </caption>
+    <tr>
+        <th>
+            Shop
+        </th>
+        <th>
+            Type of shop
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ShopName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TypeName)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "EditShop", new { id = item.IdShop })
+            </td>
+            <td>
+                @Html.ActionLink("Delete", "Delete", new { id = item.IdShop })
+            </td>
+        </tr>
+    }
+
+</table>
+<p style="margin-left:5px;">
+    @Html.ActionLink("Create new shop", "Create")
+</p>

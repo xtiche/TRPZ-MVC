@@ -1,0 +1,27 @@
+﻿@model Lab1.Models.OperandsModel
+
+@{
+    ViewBag.Title = "Index";
+}
+<!Doctype html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width" />
+        <titile>Index</titile>
+    </head>
+    <body>
+        <div>
+            @using (Html.BeginForm("Index", "Calc"))
+            {
+                @Html.TextAreaFor(x => x.Num1);
+                @Html.TextAreaFor(x => x.Num2);
+                <input type="submit" value="Calc"/>
+            }
+        </div>
+        @if (!string.IsNullOrWhiteSpace(ViewBag.Result))
+        {
+            <p>@ViewBag.Result</p>
+        }
+    </body>
+
+</html>

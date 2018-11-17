@@ -1,0 +1,30 @@
+﻿@model Lab1HW.Models.MyString
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    <div>
+        @using (Html.BeginForm("Index", "StringCheck"))
+        {
+            @Html.TextAreaFor(x => x.operand); // input area for operand 1
+            <input type="submit" value="Изменить" />
+        }
+
+    </div>
+    @if (!string.IsNullOrWhiteSpace(ViewBag.Result)) //cheack result container
+    {
+        <p>@ViewBag.Result</p>
+    }
+</body>
+</html>
+
+

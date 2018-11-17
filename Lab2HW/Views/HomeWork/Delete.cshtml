@@ -1,0 +1,26 @@
+﻿@model Lab2HW.Models.Shop
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+<p>
+    You realy want to remove this shop?
+</p>
+@using (Html.BeginForm())
+{
+    <fieldset>
+        <legend>
+            Shop
+        </legend>
+        <p>
+            @Html.DisplayFor(model => model.Name)
+        </p>
+    </fieldset>
+    <div>
+        <input type="submit" value="Delete" />
+        <span>  |   </span>
+        @Html.ActionLink("Back to List", "Index")
+    </div>
+}

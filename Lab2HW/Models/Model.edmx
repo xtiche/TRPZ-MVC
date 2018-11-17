@@ -1,0 +1,197 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Хранилище Lab2HWDBModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Shop">
+          <Key>
+            <PropertyRef Name="IdShop" />
+          </Key>
+          <Property Name="IdShop" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Type">
+          <Key>
+            <PropertyRef Name="IdType" />
+          </Key>
+          <Property Name="IdType" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Type_Shop">
+          <Key>
+            <PropertyRef Name="IdType_Shop" />
+          </Key>
+          <Property Name="IdType_Shop" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdShop" Type="int" Nullable="false" />
+          <Property Name="IdType" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Type_Shop_Shop">
+          <End Role="Shop" Type="Self.Shop" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Type_Shop" Type="Self.Type_Shop" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Shop">
+              <PropertyRef Name="IdShop" />
+            </Principal>
+            <Dependent Role="Type_Shop">
+              <PropertyRef Name="IdShop" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Type_Shop_Type">
+          <End Role="Type" Type="Self.Type" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Type_Shop" Type="Self.Type_Shop" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Type">
+              <PropertyRef Name="IdType" />
+            </Principal>
+            <Dependent Role="Type_Shop">
+              <PropertyRef Name="IdType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище Lab2HWDBModelContainer">
+          <EntitySet Name="Shop" EntityType="Self.Shop" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Type" EntityType="Self.Type" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Type_Shop" EntityType="Self.Type_Shop" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Type_Shop_Shop" Association="Self.FK_Type_Shop_Shop">
+            <End Role="Shop" EntitySet="Shop" />
+            <End Role="Type_Shop" EntitySet="Type_Shop" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Type_Shop_Type" Association="Self.FK_Type_Shop_Type">
+            <End Role="Type" EntitySet="Type" />
+            <End Role="Type_Shop" EntitySet="Type_Shop" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Lab2HWDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Shop">
+          <Key>
+            <PropertyRef Name="IdShop" />
+          </Key>
+          <Property Name="IdShop" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Type_Shop" Relationship="Self.FK_Type_Shop_Shop" FromRole="Shop" ToRole="Type_Shop" />
+        </EntityType>
+        <EntityType Name="Type">
+          <Key>
+            <PropertyRef Name="IdType" />
+          </Key>
+          <Property Name="IdType" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Type_Shop" Relationship="Self.FK_Type_Shop_Type" FromRole="Type" ToRole="Type_Shop" />
+        </EntityType>
+        <EntityType Name="Type_Shop">
+          <Key>
+            <PropertyRef Name="IdType_Shop" />
+          </Key>
+          <Property Name="IdType_Shop" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdShop" Type="Int32" Nullable="false" />
+          <Property Name="IdType" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Shop" Relationship="Self.FK_Type_Shop_Shop" FromRole="Type_Shop" ToRole="Shop" />
+          <NavigationProperty Name="Type" Relationship="Self.FK_Type_Shop_Type" FromRole="Type_Shop" ToRole="Type" />
+        </EntityType>
+        <Association Name="FK_Type_Shop_Shop">
+          <End Role="Shop" Type="Self.Shop" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Type_Shop" Type="Self.Type_Shop" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Shop">
+              <PropertyRef Name="IdShop" />
+            </Principal>
+            <Dependent Role="Type_Shop">
+              <PropertyRef Name="IdShop" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Type_Shop_Type">
+          <End Role="Type" Type="Self.Type" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Type_Shop" Type="Self.Type_Shop" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Type">
+              <PropertyRef Name="IdType" />
+            </Principal>
+            <Dependent Role="Type_Shop">
+              <PropertyRef Name="IdType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Lab2HWDBEntities2" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Shops" EntityType="Self.Shop" />
+          <EntitySet Name="Types" EntityType="Self.Type" />
+          <EntitySet Name="Type_Shop" EntityType="Self.Type_Shop" />
+          <AssociationSet Name="FK_Type_Shop_Shop" Association="Self.FK_Type_Shop_Shop">
+            <End Role="Shop" EntitySet="Shops" />
+            <End Role="Type_Shop" EntitySet="Type_Shop" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Type_Shop_Type" Association="Self.FK_Type_Shop_Type">
+            <End Role="Type" EntitySet="Types" />
+            <End Role="Type_Shop" EntitySet="Type_Shop" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище Lab2HWDBModelContainer" CdmEntityContainer="Lab2HWDBEntities2">
+          <EntitySetMapping Name="Shops">
+            <EntityTypeMapping TypeName="Lab2HWDBModel.Shop">
+              <MappingFragment StoreEntitySet="Shop">
+                <ScalarProperty Name="IdShop" ColumnName="IdShop" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Types">
+            <EntityTypeMapping TypeName="Lab2HWDBModel.Type">
+              <MappingFragment StoreEntitySet="Type">
+                <ScalarProperty Name="IdType" ColumnName="IdType" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Type_Shop">
+            <EntityTypeMapping TypeName="Lab2HWDBModel.Type_Shop">
+              <MappingFragment StoreEntitySet="Type_Shop">
+                <ScalarProperty Name="IdType_Shop" ColumnName="IdType_Shop" />
+                <ScalarProperty Name="IdShop" ColumnName="IdShop" />
+                <ScalarProperty Name="IdType" ColumnName="IdType" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

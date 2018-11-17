@@ -1,0 +1,44 @@
+﻿@model Lab2HW.Models.Shop
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Create</title>
+</head>
+<body>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryval")
+
+    @using (Html.BeginForm())
+    {
+        @Html.ValidationSummary(true)
+        <fieldset>
+            <legend>
+                New Shop
+            </legend>
+
+            <div class="editor-lable">
+                @Html.LabelFor(model => model.Name)
+            </div>
+            <div class="editor-field">
+                <p>@Html.EditorFor(model => model.Name)</p>
+                <p>@Html.ValidationMessageFor(model => model.Name)</p>
+            </div>
+            <p>
+                <input type="submit" value="Create" />
+            </p>
+        </fieldset>
+    }
+    <div>
+        <p style="margin-left:5px;">
+            @Html.ActionLink("Back to List", "Index")
+        </p>
+    </div>
+</body>
+</html>

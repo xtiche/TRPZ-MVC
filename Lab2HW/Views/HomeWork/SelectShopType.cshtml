@@ -1,0 +1,36 @@
+﻿@model Lab2HW.Models.Type_Shop
+
+@{
+    ViewBag.Title = "SelectShopType";
+}
+
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary(true)
+
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <fieldset>
+            <legend> Select shop's type </legend>
+            <ol>
+                <li>Little Shop</li>
+                <li>Shop</li>
+                <li>Supermarket</li>
+            </ol>
+            <div>
+                @Html.HiddenFor(model => model.IdShop)
+            </div>
+            <div>
+                @Html.EditorFor(model => model.IdType)
+                @Html.ValidationMessageFor(model => model.IdType)
+            </div>
+
+            <input type="submit" value="Select type" />
+        </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
